@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alexis
  */
-@WebServlet(urlPatterns = "/basicInsert")
+@WebServlet(urlPatterns = "/auth/basicInsert")
 public class InsertSomeProductServlet extends HttpServlet {
 
     @Override
