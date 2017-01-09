@@ -12,6 +12,7 @@
         <title>Ajouter un produit</title>
     </head>
     <body>
+        <%@include file="/blocks/header.jsp" %>
         <h1>Ajouter un produit :</h1>
         
         <form method="POST" action="<%= application.getContextPath() %>/auth/addProduct">

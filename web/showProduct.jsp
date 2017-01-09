@@ -16,6 +16,7 @@
         <title>Produit "<%= sp.getName() %>"</title>
     </head>
     <body>
+        <%@include file="/blocks/header.jsp" %>
         <h1>Produit "<%= sp.getName() %>"</h1>
         
         ID : <%= sp.getId() %> <br>

@@ -15,6 +15,7 @@
         <title>Liste des produits</title>
     </head>
     <body>
+        <%@include file="/blocks/header.jsp" %>
         <h1>Liste des produits :</h1>
 
         <table>
