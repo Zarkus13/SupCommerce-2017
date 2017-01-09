@@ -23,6 +23,12 @@ import javax.servlet.http.HttpServletResponse;
 public class AddProductServlet extends HttpServlet {
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/auth/addProduct.jsp")
+            .forward(req, resp);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
         final SupProduct sp = new SupProduct();
@@ -32,7 +38,7 @@ public class AddProductServlet extends HttpServlet {
         
         SupProductDao.addProduct(sp);
         
-        resp.sendRedirect(req.getContextPath() + "/showProduct.jsp?id=" + sp.getId());
+        resp.sendRedirect(req.getContextPath() + "/showProduct?id=" + sp.getId());
     }
     
     

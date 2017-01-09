@@ -25,21 +25,12 @@ public class ShowProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final Long id = Long.parseLong(req.getParameter("id"));
-        
         final SupProduct sp = SupProductDao.findProductById(id);
-        final PrintWriter out = resp.getWriter();
         
-        out.println("[");
+        req.setAttribute("product", sp);
         
-        out.println("{");
-        out.println("id: " + sp.getId());
-        out.println("name: " + sp.getName());
-        out.println("content: " + sp.getContent());
-        out.println("price: " + sp.getPrice());
-        out.println("}");
-        
-        out.println("]");   
-        
+        req.getRequestDispatcher("/showProduct.jsp")
+            .forward(req, resp);
     }    
     
 }

@@ -4,21 +4,23 @@
     Author     : Alexis
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="header">
-    <a href="<%= request.getContextPath() %>/listProducts.jsp">
+    <a href="${pageContext.request.contextPath}/listProducts">
         Liste des produits
     </a> | 
-    <% if(session.getAttribute("username") != null) { %>
-    <a href="<%= request.getContextPath() %>/auth/addProduct.jsp">
+    <c:if test="${!empty sessionScope.username}">
+        <a href="${pageContext.request.contextPath}/auth/addProduct">
         Ajouter un produit
-    </a> | 
-    <a href="<%= request.getContextPath() %>/logout">
-        Déconnexion
-    </a> | 
-    <% } else { %>
-    <a href="<%= request.getContextPath() %>/login.html">
-        Se connecter
-    </a>
-    <% } %>
+        </a> | 
+        <a href="${pageContext.request.contextPath}/logout">
+            Déconnexion
+        </a> | 
+    </c:if>
+    <c:if test="${empty sessionScope.username}">
+        <a href="${pageContext.request.contextPath}/login">
+            Se connecter
+        </a>
+    </c:if>
 </div>

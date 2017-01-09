@@ -25,22 +25,11 @@ public class ListAllProductsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("application/json");
-        
         final List<SupProduct> products = SupProductDao.getAllProducts();
-        final PrintWriter out = resp.getWriter();
+        req.setAttribute("products", products);
         
-        out.println("[");
-        
-        products.forEach((sp) -> {
-            out.println("{");
-            out.println("id: " + sp.getId());
-            out.println("name: " + sp.getName());
-            out.println("price: " + sp.getPrice());
-            out.println("},");
-        });
-        
-        out.println("]");        
+        req.getRequestDispatcher("/listProducts.jsp")
+            .forward(req, resp);
     }
        
     

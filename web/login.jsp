@@ -11,6 +11,8 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <jsp:include page="/blocks/header.jsp" />
+        
         <form method="POST" action="/supcommerce/login">
             <label for="username">Username :</label>
             <input type="text" id="username" name="username" />

@@ -4,6 +4,7 @@
     Author     : Alexis
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="com.supinfo.sun.supcommerce.doa.SupProductDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
@@ -15,7 +16,8 @@
         <title>Liste des produits</title>
     </head>
     <body>
-        <%@include file="/blocks/header.jsp" %>
+        <jsp:include page="/blocks/header.jsp" />
+        
         <h1>Liste des produits :</h1>
 
         <table>
@@ -25,14 +27,14 @@
                 <th>Prix</th>
                 <th>Actions</th>
             </tr>
-            <% for(SupProduct sp : SupProductDao.getAllProducts()) { %>
+            <c:forEach items="${products}" var="sp">
                 <tr>
-                    <td><%= sp.getId() %></td>
-                    <td><%= sp.getName() %></td>
-                    <td><%= sp.getPrice() %></td>
-                    <td><a href="<%= request.getServletContext().getContextPath() %>/showProduct.jsp?id=<%= sp.getId() %>">Voir</a></td>
-                </tr>	
-            <% } %>		
+                    <td>${sp.id}</td>
+                    <td>${sp.name}</td>
+                    <td>${sp.price}</td>
+                    <td><a href="${pageContext.request.contextPath}/showProduct?id=${sp.id}">Voir</a></td>
+                </tr>
+            </c:forEach>
         </table>
     </body>
 </html>

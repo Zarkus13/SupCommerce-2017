@@ -12,10 +12,10 @@
         <title>Ajouter un produit</title>
     </head>
     <body>
-        <%@include file="/blocks/header.jsp" %>
+        <jsp:include page="/blocks/header.jsp" />
         <h1>Ajouter un produit :</h1>
         
-        <form method="POST" action="<%= application.getContextPath() %>/auth/addProduct">
+        <form method="POST" action="${pageContext.request.contextPath}/auth/addProduct">
             <label for="name">Nom :</label> <input type="text" id="name" name="name" /> <br>
             <label for="price">Prix :</label> <input type="number" id="price" name="price" /> <br>
             <label for="content">Contenu :</label> <textarea id="content" name="content"></textarea> <br>
