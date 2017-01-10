@@ -7,6 +7,8 @@ package com.supinfo.supcommerce.servlets;
 
 import com.supinfo.sun.supcommerce.bo.SupProduct;
 import com.supinfo.sun.supcommerce.doa.SupProductDao;
+import com.supinfo.supcommerce.db.DaoFactory;
+import com.supinfo.supcommerce.entities.Product;
 import java.io.IOException;
 import java.util.Random;
 import javax.servlet.ServletException;
@@ -31,16 +33,16 @@ public class AddProductServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
-        final SupProduct sp = new SupProduct();
-        sp.setName(req.getParameter("name"));
-        sp.setPrice(Float.parseFloat(req.getParameter("price")));
-        sp.setContent(req.getParameter("content"));
+        final Product p = new Product(
+            req.getParameter("name"), 
+            Float.parseFloat(req.getParameter("price")), 
+            req.getParameter("content")
+        );
         
-        SupProductDao.addProduct(sp);
+        DaoFactory.getProductDao().addProduct(p);
         
-        resp.sendRedirect(req.getContextPath() + "/showProduct?id=" + sp.getId());
+        resp.sendRedirect(req.getContextPath() + "/showProduct?id=" + p.getId());
     }
-    
     
     
 }

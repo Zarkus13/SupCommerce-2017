@@ -6,7 +6,9 @@
 package com.supinfo.supcommerce.db;
 
 import com.supinfo.supcommerce.db.daos.CategoryDao;
+import com.supinfo.supcommerce.db.daos.ProductDao;
 import com.supinfo.supcommerce.db.daos.jpa.JpaCategoryDao;
+import com.supinfo.supcommerce.db.daos.jpa.JpaProductDao;
 
 /**
  *
@@ -17,5 +19,9 @@ public class DaoFactory {
     
     public static CategoryDao getCategoryDao() {
         return new JpaCategoryDao(PersistenceManager.getEntityManagerFactory());
+    }
+    
+    public static ProductDao getProductDao() {
+        return new JpaProductDao(PersistenceManager.getEntityManagerFactory());
     }
 }
