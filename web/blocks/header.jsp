@@ -14,6 +14,9 @@
         <a href="${pageContext.request.contextPath}/auth/addProduct">
         Ajouter un produit
         </a> | 
+        <a href="${pageContext.request.contextPath}/auth/addCategory">
+        Ajouter une catégorie
+        </a> |
         <a href="${pageContext.request.contextPath}/logout">
             Déconnexion
         </a> | 
