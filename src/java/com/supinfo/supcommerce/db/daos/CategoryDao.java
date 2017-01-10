@@ -15,4 +15,6 @@ public interface CategoryDao {
     
     Category addCategory(final Category category);
     
+    Boolean deleteCategory(final Category category);
+    
 }

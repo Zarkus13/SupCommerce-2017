@@ -5,6 +5,7 @@
  */
 package com.supinfo.supcommerce.db.daos.jpa;
 
+import com.supinfo.supcommerce.db.JpaDao;
 import com.supinfo.supcommerce.db.PersistenceManager;
 import com.supinfo.supcommerce.db.daos.CategoryDao;
 import com.supinfo.supcommerce.entities.Category;
@@ -16,34 +17,28 @@ import javax.persistence.EntityTransaction;
  *
  * @author Alexis
  */
-public class JpaCategoryDao implements CategoryDao {
-    private EntityManagerFactory emf;
+public class JpaCategoryDao extends JpaDao implements CategoryDao {
     
     public JpaCategoryDao(final EntityManagerFactory emf) {
-        this.emf = emf;
+        super(emf);
     }
 
     @Override
     public Category addCategory(final Category category) {
-        final EntityManager em = emf.createEntityManager();
-        final EntityTransaction t = em.getTransaction();
-        
-        try {
-            t.begin();
-            
+        return withTransaction((EntityManager em) -> {
             em.persist(category);
             
-            t.commit();
-            
             return category;
-        } catch(Exception e) {
-            return null;
-        } finally {
-            if(t.isActive())
-                t.rollback();
+        });
+    }
+
+    @Override
+    public Boolean deleteCategory(final Category category) {
+        return withTransaction((EntityManager em) -> {
+            em.remove(category);
             
-            em.close();
-        }
+            return true;
+        });
     }
     
 }
