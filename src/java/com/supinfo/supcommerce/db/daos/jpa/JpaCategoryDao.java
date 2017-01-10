@@ -5,13 +5,13 @@
  */
 package com.supinfo.supcommerce.db.daos.jpa;
 
+import java.util.List;
+
 import com.supinfo.supcommerce.db.JpaDao;
-import com.supinfo.supcommerce.db.PersistenceManager;
 import com.supinfo.supcommerce.db.daos.CategoryDao;
 import com.supinfo.supcommerce.entities.Category;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 
 /**
  *
@@ -38,6 +38,20 @@ public class JpaCategoryDao extends JpaDao implements CategoryDao {
             em.remove(category);
             
             return true;
+        });
+    }
+
+    @Override
+    public List<Category> listAllCategories() {
+        return withEntityManager((EntityManager em) -> {
+            return em.createNamedQuery("Category.findAll").getResultList(); // Voir dans classe Category
+        });
+    }
+
+    @Override
+    public Category findCategoryById(Long categoryId) {
+        return withEntityManager((EntityManager em) -> {
+           return em.find(Category.class, categoryId);
         });
     }
     

@@ -27,12 +27,12 @@
                 <th>Prix</th>
                 <th>Actions</th>
             </tr>
-            <c:forEach items="${products}" var="sp">
+            <c:forEach items="${products}" var="p">
                 <tr>
-                    <td>${sp.id}</td>
-                    <td>${sp.name}</td>
-                    <td>${sp.price}</td>
-                    <td><a href="${pageContext.request.contextPath}/showProduct?id=${sp.id}">Voir</a></td>
+                    <td>${p.id}</td>
+                    <td>${p.name}</td>
+                    <td>${p.price}</td>
+                    <td><a href="${pageContext.request.contextPath}/showProduct?id=${p.id}">Voir</a></td>
                 </tr>
             </c:forEach>
         </table>

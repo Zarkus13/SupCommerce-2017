@@ -6,6 +6,7 @@
 package com.supinfo.supcommerce.db.daos;
 
 import com.supinfo.supcommerce.entities.Product;
+import java.util.List;
 
 /**
  *
@@ -14,5 +15,9 @@ import com.supinfo.supcommerce.entities.Product;
 public interface ProductDao {
     
     Product addProduct(final Product product);
+    
+    List<Product> listAllProducts();
+    
+    Product findProductById(final Long productId);
     
 }

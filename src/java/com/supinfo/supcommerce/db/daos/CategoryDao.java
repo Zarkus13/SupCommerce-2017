@@ -6,6 +6,7 @@
 package com.supinfo.supcommerce.db.daos;
 
 import com.supinfo.supcommerce.entities.Category;
+import java.util.List;
 
 /**
  *
@@ -16,5 +17,9 @@ public interface CategoryDao {
     Category addCategory(final Category category);
     
     Boolean deleteCategory(final Category category);
+    
+    List<Category> listAllCategories();
+    
+    Category findCategoryById(final Long categoryId);
     
 }

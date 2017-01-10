@@ -23,6 +23,7 @@
         ID : ${product.id} <br>
         Nom : ${product.name} <br>
         Prix : ${product.price} <br>
-        Contenu : ${product.content}
+        Contenu : ${product.content} <br>
+        Catégorie : ${product.category.name}
     </body>
 </html>

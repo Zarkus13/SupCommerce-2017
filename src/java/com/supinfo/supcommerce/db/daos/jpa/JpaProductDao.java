@@ -8,6 +8,7 @@ package com.supinfo.supcommerce.db.daos.jpa;
 import com.supinfo.supcommerce.db.JpaDao;
 import com.supinfo.supcommerce.db.daos.ProductDao;
 import com.supinfo.supcommerce.entities.Product;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -27,6 +28,20 @@ public class JpaProductDao extends JpaDao implements ProductDao {
             em.persist(product);
             
             return product;
+        });
+    }
+
+    @Override
+    public List<Product> listAllProducts() {
+        return withEntityManager((EntityManager em) -> {
+            return em.createNamedQuery("Product.findAll").getResultList(); // Voir class Product
+        });
+    }
+
+    @Override
+    public Product findProductById(Long productId) {
+        return withEntityManager((EntityManager em) -> {
+            return em.find(Product.class, productId);
         });
     }
     
