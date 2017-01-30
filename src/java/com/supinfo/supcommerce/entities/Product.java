@@ -14,6 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -24,6 +27,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product AS p")
 })
+@XmlRootElement(name = "produit")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -45,6 +49,7 @@ public class Product {
     
     public Product() {}
 
+    @XmlAttribute(name = "identifiant")
     public Long getId() {
         return id;
     }
@@ -53,6 +58,7 @@ public class Product {
         this.id = id;
     }
 
+    @XmlElement(name = "nom")
     public String getName() {
         return name;
     }
@@ -61,6 +67,7 @@ public class Product {
         this.name = name;
     }
 
+    @XmlElement(name = "prix")
     public Float getPrice() {
         return price;
     }
@@ -69,6 +76,7 @@ public class Product {
         this.price = price;
     }
 
+    @XmlElement(name = "contenu")
     public String getContent() {
         return content;
     }

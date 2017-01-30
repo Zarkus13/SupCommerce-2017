@@ -5,9 +5,12 @@
  */
 package com.supinfo.supcommerce.rest.api;
 
+import com.supinfo.supcommerce.entities.Product;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
@@ -16,9 +19,12 @@ import javax.ws.rs.PathParam;
 @Path("/products")
 public class ProductsWebService {
     
-    @GET @Path("/{name}")
-    public String test(@PathParam("name") String name) {
-        return "Hello " + name;
+    @GET @Path("/{name}") @Produces(MediaType.APPLICATION_JSON)
+    public Product test(@PathParam("name") String name) {
+        final Product p = new Product(name, 10f, "ta belle maman");
+        p.setId(666L);
+        
+        return p;
     }
     
 }
