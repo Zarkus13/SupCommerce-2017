@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>List products</title>
+    </h:head>
+    <h:body>
+        <h1>List of products :</h1>
+        
+        <h:form>
+            <h:commandLink action="addProduct?faces-redirect=true" value="Add a product" />
+        </h:form>
+        
+        <h:form id="addProductForm">
+            <h:outputLabel for="productName" value="Name :" />
+            <p:inputText id="productName" 
+                         value="#{productsController.productToAdd.name}" /> <br/>
+            
+            <h:outputLabel for="productPrice" value="Price :" />
+            <p:inputText id="productPrice"
+                         value="#{productsController.productToAdd.price}" /> <br/>
+            
+            <h:outputLabel for="productContent" value="Content :" />
+            <p:inputTextarea id="productContent" 
+                             value="#{productsController.productToAdd.content}" /> <br/>
+            
+            <p:commandButton actionListener="#{productsController.addProduct}" 
+                             value="Add product"
+                             update=":productsTableForm" />
+        </h:form>
+        
+        <br/>
+        
+        <h:form id="productsTableForm">
+            <p:chart type="line" model="#{productsController.productsChartModel}" />
+            
+            <p:dataTable value="#{productsController.products}" 
+                         var="p">
+                <p:column headerText="ID" sortBy="#{p.id}">
+                    #{p.id}
+                </p:column>
+
+                <p:column headerText="Name" sortBy="#{p.name}" filterBy="#{p.name}">
+                     #{p.name}
+                </p:column>
+
+                <p:column headerText="Price" sortBy="#{p.price}">
+                    #{p.price}
+                </p:column>
+            </p:dataTable>
+        </h:form>
+       
+    </h:body>
+</html>
+
